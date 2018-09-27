@@ -13,10 +13,10 @@ def home(request):
 		fromdate = request.POST['fromdate']
 		todate = request.POST['todate']
 		username=request.POST['user_id']
-		consumerKey = "VJGa9hoj6tLTcl77gJNtXeZYT" 
-		consumerSecret = "rrPGuXHOuBFVYqIRwpTenqtQqDgaJyxmuO0JM6QwsaFjyMY9aP"
-		accessToken = "1037658713816006656-Mpa5wQleHaiMVaBtOunqA6mCAcOuLv"
-		accessTokenSecret = "Ak0OKwEvSv75JovGgpUKxNiLR6JBGyswcqki0zimJCEUL"
+		consumerKey = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" 
+		consumerSecret = "xxxxxxxxxxxxxxxxxxxxxxxxxxx"
+		accessToken = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+		accessTokenSecret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 		auth = tweepy.OAuthHandler(consumerKey, consumerSecret)
 		auth.set_access_token(accessToken, accessTokenSecret)
@@ -44,7 +44,6 @@ def home(request):
 				tweets.append(tweet)
 
 		while (tmpTweets[-1].created_at > startDate):
-			print("Last Tweet @", tmpTweets[-1].created_at, " - fetching some more")
 			tmpTweets = api.user_timeline(username, max_id = tmpTweets[-1].id)
 		for tweet in tmpTweets:
 			if tweet.created_at < endDate and tweet.created_at > startDate:
@@ -68,10 +67,10 @@ def home(request):
 	elif request.method=='POST' and 'btnform2' in request.POST:
 		keywordsearch=request.POST['user_id']
 		
-		consumerKey = "VJGa9hoj6tLTcl77gJNtXeZYT" 
-		consumerSecret = "rrPGuXHOuBFVYqIRwpTenqtQqDgaJyxmuO0JM6QwsaFjyMY9aP"
-		accessToken = "1037658713816006656-Mpa5wQleHaiMVaBtOunqA6mCAcOuLv"
-		accessTokenSecret = "Ak0OKwEvSv75JovGgpUKxNiLR6JBGyswcqki0zimJCEUL"
+		consumerKey = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" 
+		consumerSecret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+		accessToken = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+		accessTokenSecret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 		auth = tweepy.OAuthHandler(consumerKey, consumerSecret)
 		auth.set_access_token(accessToken, accessTokenSecret)
 		api = tweepy.API(auth)
@@ -89,7 +88,6 @@ def home(request):
     #save the id of the oldest tweet less one
 		oldest = alltweets[-1].id - 1
 		while len(new_tweets) > 0:
-			print ("getting tweets before %s" % (oldest))
 
         #all subsiquent requests use the max_id param to prevent duplicates
 			new_tweets = api.user_timeline(screen_name = screen_name,count=200,max_id=oldest)
@@ -99,7 +97,6 @@ def home(request):
 
         #update the id of the oldest tweet less one
 			oldest = alltweets[-1].id - 1
-			print ("...%s tweets downloaded so far" % (len(alltweets)))
 
 
 		workbook = xlsxwriter.Workbook("/home/kamleshsisodiya/Desktop/"+screen_name+"1@"+ ".xlsx")

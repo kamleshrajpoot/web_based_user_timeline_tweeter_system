@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+<div class="col-sm-6">
+<form method="post"  enctype="multipart/form-data" class="date">
+  <div class="frm-header">Search User Twittes By Date</div>
+  {% csrf_token %}
+    <div class="form-group">
+              <label for="user_id">User-Name</label>
+              <input type="text" class="form-control" id="user_id" name = "user_id" placeholder="narendramodi " value="" required>
+              <div class="invalid-feedback"></div>
+            </div>
+   <div class="form-group">
+              <label for="fromdate">From</label>
+              <input type="date" class="form-control" id="fromdate" name = "fromdate" placeholder="Starting Date " value="" required>
+              <div class="invalid-feedback"></div>
+            </div>
+   <div class="form-group">
+              <label for="todate">To</label>
+              <input type="date" class="form-control" id="todate" name = "todate" value="" placeholder=" Ending Date" required>
+              <div class="invalid-feedback"></div>
+            </div>
+  <button type="submit" class="btn btn-primary" name="btnform1">Get</button>
+  </form>
+  
+  <span style="color: green;" >{{fromdate}}</span> 
+</div>
+<div class="col-sm-6">
+<form method="post"  enctype="multipart/form-data" class="Keyword" >
+  <div class="frm-header">Search User Twittes By Keyword</div>
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="user_id">User Id</label>
+    <input type="text" class="form-control" id="user_id" name="user_id" placeholder="Ex- @narendramodi" value="" required>
+    <div class="invalid-feedback"></div>
+  </div>
+  <button type="submit" class="btn btn-primary" name="btnform2">Get</button>
+  </form>
+  <span style="color: green;" >{{keywordsearch}}</span> 
+</div>
+</div>
+</div>
+
+
+{% endblock %}
